@@ -1,0 +1,13 @@
+
+# vim
+**/*.swp
+
+# python
+**/*.pyc
+**/__pycache__/
+
+# jupyter
+**/.ipynb_checkpoints/
+
+
+.vscode
