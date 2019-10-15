@@ -1,8 +1,8 @@
-# 自己的分词器
+# PyWordCutter
 
-本项目原本为课程报告内容，后来加以整理。真正的分词器除开在算法方面进行实践，还需要在执行速度上有所
-展现（多线程等技术），本项目尚未达到该要求，后期如有时间会加以补充。
+This project is used to teach how build a word cutter in Python. For the detail
+you can read the posts(in Chinese) in my blog:
 
-## 使用方法
++ chapter1: n-gram
 
-## 自定义词典
+And I will add more functions in future.
