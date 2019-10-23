@@ -5,6 +5,14 @@
 
 本项目基于 Python 3.68 实现。所用包可以参考 requirements.txt。
 
+## 教程
+
+1. N-Gram 分词
+2. HMM 分词
+3. End2end 端对端分词
+
+训练语料可以参考：XXX
+
 ## 用法
 
 安装所需的包：

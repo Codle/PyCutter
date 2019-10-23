@@ -24,6 +24,7 @@ class Vocabulary(object):
         self.root_node = CharNode('#')
         self.node_num = 0
         self.word_num = 0
+        self.freq = 0
 
     def add(self, word: str):
         """ 添加词语：新词则新建节点，旧词就只+1 """
@@ -31,6 +32,7 @@ class Vocabulary(object):
         node = self.root_node
 
         for char in word:
+            self.freq += 1
             if char in node.child:
                 node = node.child[char]
                 node.count += 1
@@ -44,10 +46,20 @@ class Vocabulary(object):
             node.finished = True
             self.word_num += 1
 
-    def find_prefix(self, prefix: str):
-        """ 前缀查找 """
-        # TODO
-        pass
+    def find_prefix(self, sentence: str):
+        """ 前缀查找，查询开头的全部词语 """
+        word_freq = []
+
+        node = self.root_node
+
+        for idx, char in enumerate(sentence):
+            if char in node.child:
+                node = node.child[char]
+                if node.finished:
+                    word_freq.append((sentence[:idx+1], node.count))
+            else:
+                break
+        return word_freq
 
     def __len__(self):
         return self.word_num
