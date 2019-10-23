@@ -12,7 +12,7 @@ from .basemodel import Model
 from ..vocab import Vocabulary
 
 
-class NGram(Model):
+class UniGram(Model):
 
     def __init__(self, n_gram=1):
         self.n_gram = n_gram
@@ -37,7 +37,6 @@ class NGram(Model):
         G.add_weighted_edges_from(edges)
 
         # dp
-        # TODO: 负无穷硬编码后续需要改
         end_idx = len(sentence)-1
         route = [None for i in range(len(sentence))]
         prob = [None for i in range(len(sentence))]

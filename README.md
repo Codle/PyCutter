@@ -7,11 +7,11 @@
 
 ## 教程
 
-1. N-Gram 分词
+1. UniGram 分词
 2. HMM 分词
 3. End2end 端对端分词
 
-训练语料可以参考：XXX
+训练语料可以参考：[icbw2](http://sighan.cs.uchicago.edu/bakeoff2005/)
 
 ## 用法
 
