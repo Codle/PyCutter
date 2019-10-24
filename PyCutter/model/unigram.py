@@ -12,7 +12,7 @@ from .basemodel import Model
 from ..vocab import Vocabulary
 
 
-class UniGram(Model):
+class UniGramModel(Model):
 
     def __init__(self, n_gram=1):
         self.n_gram = n_gram
