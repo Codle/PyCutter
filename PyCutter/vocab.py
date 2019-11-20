@@ -1,6 +1,4 @@
 """ 基于 Trie 树的词典实现
-Author： Yin
-Date： 2019/10/19
 """
 from .utils.list import KeyCompareList as KCL
 

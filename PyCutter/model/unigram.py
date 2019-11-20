@@ -1,14 +1,11 @@
 """ N-Gram 模型实现
-
-Author: Yin
-Date: 2019/10/20
 """
 
 from math import log
 
 import networkx as nx
 
-from .basemodel import Model
+from .module import Model
 from ..vocab import Vocabulary
 
 
@@ -17,7 +14,23 @@ class UniGramModel(Model):
     def __init__(self, n_gram=1):
         self.n_gram = n_gram
 
-    def cut(self, sentence: str, vocab: Vocabulary):
+    def cut(self, sentence, vocab):
+        """ 标点符号默认分词 """
+        symbol_words = ['\'', '\"', '，', ',', ':', '：', '《', '<','！',
+                        '》', '>', '/', '？', '\\', '\n', '。', '.', '、', '(', ')', '（', '）']
+        start_idx = 0
+        for idx, ch in enumerate(sentence):
+            if ch in symbol_words:
+                for word in self._cut(sentence[start_idx:idx], vocab):
+                    yield word
+                yield ch
+                start_idx = idx+1
+        
+        if start_idx == 0:
+            for word in self._cut(sentence, vocab):
+                    yield word
+
+    def _cut(self, sentence, vocab):
         """ 求取句子中所有的词组合 """
         sentence_freq = []
         for i in range(len(sentence)):
@@ -38,8 +51,8 @@ class UniGramModel(Model):
 
         # dp
         end_idx = len(sentence)-1
-        route = [None for i in range(len(sentence))]
-        prob = [None for i in range(len(sentence))]
+        route = [len(sentence) for i in range(len(sentence))]
+        prob = [0.0 for i in range(len(sentence))]
 
         for i in range(end_idx, -1, -1):
             # TODO: 需要修改

@@ -1,16 +1,14 @@
-from PyCutter.vocab import Vocabulary
-from PyCutter.model import UniGramModel
-from PyCutter.utils.data import load_words_from_dir
+import PyCutter
+import tqdm
+import pickle
 
 
 if __name__ == '__main__':
 
-    vocab = Vocabulary()
-    train_path = 'data/icwb2-data/training'
-
-    words = load_words_from_dir(train_path, '.utf8')
-    for word in words:
-        vocab.add(word)
-
-    model = UniGramModel()
-    model.cut("南京市长江大桥", vocab)
+    cutter = PyCutter.Cutter()
+    ans_file = open('output/ans.utf8', 'w')
+    with open('data/testing/pku_test.utf8', 'r') as  test_file:
+        for line in tqdm.tqdm(test_file.readlines()):
+            words = cutter.cut(line)
+            ans_file.write(' '.join(words))
+    ans_file.close()
